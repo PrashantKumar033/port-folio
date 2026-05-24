@@ -340,3 +340,52 @@ if (aboutStats) {
 
 console.log('%c Welcome to Pacificodin Portfolio! ', 'background: #0ef; color: #051129; font-size: 20px; padding: 10px;');
 console.log('%c Designed & Developed with ❤️', 'color: #0ef; font-size: 16px;');
+
+
+
+
+
+// ============================================
+// HAMBURGER MENU — add this to script.js
+// ============================================
+
+// 1. In index.html, add these two elements INSIDE <header class="header">
+//    right before </header>:
+//
+//    <div class="nav-overlay" id="navOverlay"></div>
+//    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+//        <span></span>
+//        <span></span>
+//        <span></span>
+//    </button>
+//
+// 2. Paste the JS below into your script.js file:
+
+const menuToggle = document.getElementById('menuToggle');
+const navbar     = document.querySelector('.navbar');
+const navOverlay = document.getElementById('navOverlay');
+
+function openMenu() {
+    menuToggle.classList.add('open');
+    navbar.classList.add('open');
+    navOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+    menuToggle.classList.remove('open');
+    navbar.classList.remove('open');
+    navOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+menuToggle.addEventListener('click', () => {
+    navbar.classList.contains('open') ? closeMenu() : openMenu();
+});
+
+navOverlay.addEventListener('click', closeMenu);
+
+// Close menu when a nav link is clicked
+document.querySelectorAll('.navbar a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+});
